@@ -3,6 +3,8 @@ https://docs.anaconda.com/anaconda/packages/py3.6_linux-64
 
 Simple neural network
 http://scikit-learn.org/stable/modules/neural_networks_supervised.html
+https://www.springboard.com/blog/beginners-guide-neural-network-in-python-scikit-learn-0-18/
 
 RNN with numpy
 http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-2-implementing-a-language-model-rnn-with-python-numpy-and-theano/
+https://iamtrask.github.io/2015/11/15/anyone-can-code-lstm/

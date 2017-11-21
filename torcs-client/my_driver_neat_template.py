@@ -13,7 +13,7 @@ import neat
 import visualize
 import time
 
-TRAIN = False
+TRAIN = True
 RETRAIN = True
 if TRAIN == False and RETRAIN == True:
     print('TRAIN is False, but RETRAIN is True!')
@@ -23,7 +23,8 @@ RETRAIN_FROM_GENERATION = 6
 
 DEBUG = False
 VERBOSE = True
-ACC = False
+ACC = True
+ACC_value = 2
 
 # global variable
 fitness_factor = {}
@@ -32,6 +33,9 @@ count_s = 0
 
 if ACC:
     import pyautogui
+    def press_acc():
+        for i in range(ACC_value):
+            pyautogui.press('+')
 # For simulate user input, not using now
 '''def press_e(name, delay):
     print('sleep')    
@@ -40,9 +44,7 @@ if ACC:
     pyautogui.press('esc')
     time.sleep(delay)
     pyautogui.press('enter')'''
-def press_acc():
-    for i in range(7):
-        pyautogui.press('+')
+
 
 class MyDriver(Driver):    
     def drive(self, carstate: State) -> Command:
@@ -110,18 +112,18 @@ class MyDriver(Driver):
         # 1. if car speed < 10 after count_s > 100 
         # 2. hit wall
         # 3. off track
-
+        print(carstate)
         if TRAIN:
-            if (count_s > 100 and abs(speed - 0.0) < 2) or \
+            if (carstate.current_lap_time > 10 and abs(speed - 0.0) < 2) or \
                carstate.damage > 0 or \
                carstate.distance_from_center >= 1 or \
                carstate.distance_from_center <= -1:
                 print('Termination!!!!!!!!!!!!!!')
                 termination = True
-
-            if ACC:
-                #press_acc()
-                ACC = False
+                
+            if ACC and not hasattr(self, 'ACC_flag'):
+                self.ACC_flag = True
+                press_acc()               
 
             if termination:
                 
@@ -162,7 +164,6 @@ def eval_genomes(genomes, config):
         print('child generation:', generation + 1)
         print('genome_id:', genome_id)
         # init MyDriver
-        ACC = True
         my_driver = MyDriver()
         
         # create feed forward network

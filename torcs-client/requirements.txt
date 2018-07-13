@@ -1,3 +1,0 @@
-# --only-binary :all:
-# matplotlib
-numpy

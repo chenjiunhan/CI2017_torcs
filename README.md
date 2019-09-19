@@ -1,4 +1,7 @@
 # CI2017_torcs
+<p align="center">
+    <a href="https://www.youtube.com/watch?v=1PyPLYz5d1Y"><img src="http://img.youtube.com/vi/1PyPLYz5d1Y/0.jpg"></a>
+</p>
 
 # Install graphviz
 pip3 install graphviz
